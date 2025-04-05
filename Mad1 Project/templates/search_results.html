@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #2c3e50;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .navbar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            margin-right: 25px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a:hover {
+            color: #f1c40f;
+        }
+
+        .navbar-left, .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logout-link {
+            background-color: #e74c3c;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-link:hover {
+            background-color: #c0392b;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 28px;
+            background-color: #34495e;
+            color: white;
+        }
+
+        /* Search Results List */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        li {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 6px 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-left, .navbar-right {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar a {
+                margin: 10px 0;
+            }
+
+            ul {
+                padding: 10px;
+            }
+
+            li {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/"><i class="fas fa-home"></i>&nbsp;Home</a>
+            <a href="/profile"><i class="fas fa-user"></i>&nbsp;Profile</a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i>&nbsp;Cart</a>
+            <a href="/orders"><i class="fas fa-box"></i>&nbsp;Orders</a>
+        </div>
+        <div class="navbar-right">
+            <a href="/logout" class="logout-link"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+        </div>
+    </div>
+
+    <!-- Heading -->
+    <h1>Your Search Results</h1>
+
+    <!-- Search Results List -->
+    <ul>
+        {% for product in results %}
+        <li>
+            <h2><i class="fas fa-cube"></i> {{ product.product_name }}</h2>
+            <p><strong>Category:</strong> {{ product.category.category_name }}</p>
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+            <p><strong>Manufacture Date:</strong> {{ product.manufacture_date }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

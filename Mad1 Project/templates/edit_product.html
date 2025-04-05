@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <style>
+        /* Reset some default styles */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .navbar-right {
+            float: right;
+        }
+
+        /* Improved logout button styling */
+        .logout-link {
+            background-color: #f00;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 14px 8px;
+        }
+
+        .logout-link:hover {
+            background-color: #900;
+        }
+
+        /* Add media query for responsiveness */
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .navbar-right {
+                float: none;
+            }
+        }
+        h1 {
+            text-align: center;
+            margin-top: 80px; /* Adjust the margin as needed */
+        }
+    
+        form {
+            max-width: 600px; /* Adjust the maximum width as needed */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    
+        select {
+            height: 40px;
+        }
+    
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/profile">profile</a>
+        <div class="navbar-right">
+            <a href="/logout" class="logout-link">Logout</a>
+        </div>
+    </div>
+
+<h1>Edit product</h1>
+    <form action="" method="post">
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" id="product_name"  required value="{{product.product_name}}">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" value="{{product.price}}" required>
+        <label for="category">Category:
+            <select name="category" id="category" required>
+                {% for category_drp in categories %}
+                {% if category_drp.category_id==product.category_id %}
+                  <option class='select' value="{{product.category_id}}" selected>{{category_drp.category_name}}</option>
+                {% else %}
+                <option value="{{category_drp.category_id}}">{{category_drp.category_name}}</option>
+                {% endif %}
+                {% endfor %}
+    
+            </select>
+        </label>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="{{product.quantity}}" required>
+        <label for="mgn_date">Manufacture Date:</label>
+        <input type="date" name="manufacture_date" id="mgn_date" value="{{product.manufacture_date}}" required>
+        <input type="submit" value="Save Product">
+    </form>
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #fff);
+            min-height: 100vh;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #007BFF;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a i {
+            margin-right: 6px;
+        }
+
+        .navbar a:hover {
+            color: #ffeb3b;
+        }
+
+        h1 {
+            margin: 30px 0 10px;
+            text-align: center;
+            color: #007BFF;
+        }
+
+        hr {
+            width: 80%;
+            margin: 10px auto 20px;
+            border: 1px solid #ccc;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .username-display {
+            font-size: 18px;
+            color: #444;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            {% if not user.is_admin %}
+                <a href="/cart"><i class="fas fa-shopping-basket"></i> Cart</a>
+                <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+            {% endif %}
+        </div>
+        <div>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Profile Heading -->
+    <h1>Profile <span class="username-display">@{{ user.username }}</span></h1>
+    <hr>
+
+    <!-- Profile Form -->
+    <form method="POST">
+        <label for="username">New Username:</label>
+        <input type="text" id="username" name="username" required value="{{ user.username }}">
+
+        <label for="cpassword">Current Password:</label>
+        <input type="password" id="cpassword" name="cpassword" required>
+
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="f_name">First Name:</label>
+        <input type="text" id="f_name" name="f_name" required value="{{ user.f_name }}">
+
+        <label for="l_name">Last Name:</label>
+        <input type="text" id="l_name" name="l_name" required value="{{ user.l_name }}">
+
+        <input type="submit" value="Update Profile">
+    </form>
+</body>
+</html>

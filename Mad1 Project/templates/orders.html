@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yAQQFhZT7..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .navbar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            margin-right: 25px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a i {
+            margin-right: 8px;
+        }
+
+        .navbar a:hover {
+            color: #f1c40f;
+        }
+
+        .navbar-left, .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logout-link {
+            background-color: #e74c3c;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-link:hover {
+            background-color: #c0392b;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 28px;
+            background-color: #34495e;
+            color: white;
+        }
+
+        /* Orders container */
+        .orders-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        li:hover {
+            transform: translateY(-4px);
+            background-color: #fdfdfd;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        p i {
+            color: #2c3e50;
+            margin-right: 8px;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-left, .navbar-right {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar a {
+                margin: 8px 0;
+            }
+
+            .orders-container {
+                padding: 10px;
+            }
+
+            li {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+        </div>
+        <div class="navbar-right">
+            <a href="/logout" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Page Heading -->
+    <h1>Your Orders</h1>
+
+    <!-- Orders Section -->
+    <div class="orders-container">
+        <ul>
+            {% for order in user_orders %}
+            <li>
+                <p><i class="fas fa-receipt"></i> <strong>Order ID:</strong> {{ order.order_id }}</p>
+                <p><i class="fas fa-barcode"></i> <strong>Product ID:</strong> {{ order.id_of_product }}</p>
+                <p><i class="fas fa-sort-numeric-up-alt"></i> <strong>Quantity:</strong> {{ order.quantity }}</p>
+                <p><i class="fas fa-dollar-sign"></i> <strong>Price:</strong> ${{ order.price }}</p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Order Date:</strong> {{ order.order_date }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

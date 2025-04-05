@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Category</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color:#FA8072;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            margin: 20px;
+            color:#FA8072;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Category</h1>
+    <h3>Are you sure you want to delete Category {{category.category_name}} ?</h3>
+    <form action="/category/{{category.category_id}}/delete" method="post">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

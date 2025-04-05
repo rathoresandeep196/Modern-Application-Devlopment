@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products of {{category.category_name}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    .navbar {
+      background-color: #1e1e2f;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #fff;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar a:hover {
+      color: #ffa500;
+    }
+
+    .logout-link {
+      background-color: #e74c3c;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .logout-link:hover {
+      background-color: #c0392b;
+    }
+
+    .page-header {
+      background-color: #1e1e2f;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      text-align: center;
+      margin: 30px 0 10px;
+      color: #333;
+    }
+
+    .category-info {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .add-button {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 30px auto;
+      background-color: #2e8b57;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-button:hover {
+      background-color: #276947;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 40px 60px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-card p {
+      color: #555;
+      margin: 4px 0;
+    }
+
+    .actions {
+      margin-top: 15px;
+    }
+
+    .actions a {
+      text-decoration: none;
+      padding: 8px 12px;
+      background-color: #1e1e2f;
+      color: white;
+      border-radius: 6px;
+      margin-right: 10px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .actions a:hover {
+      background-color: #444;
+    }
+
+    .actions i {
+      margin-right: 5px;
+    }
+
+    @media (max-width: 500px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .add-button {
+        margin: 20px auto;
+      }
+
+      .product-card h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/profile">Profile</a>
+    </div>
+    <div class="nav-right">
+      <a href="/logout" class="logout-link">Logout</a>
+    </div>
+  </div>
+
+  <!-- Page Heading -->
+  <div class="page-header">
+    <h1>Products of {{category.category_name}}</h1>
+  </div>
+
+  <div class="page-title">Product List</div>
+  <div class="category-info">
+    <p><em>Showing only products of category <strong>{{category.category_name}}</strong>.</em></p>
+  </div>
+
+  <a href="/category/{{category.category_id}}/add-product" class="add-button">+ Add New Product</a>
+
+  <!-- Product Cards -->
+  <div class="product-grid">
+    {% for product in category.products %}
+    <div class="product-card">
+      <h3>{{ product.product_name }}</h3>
+      <p><strong>ID:</strong> {{ product.product_id }}</p>
+      <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+      <p><strong>Price:</strong> ₹{{ product.price }}</p>
+      <p><strong>Manufacture Date:</strong> {{ product.manufacture_date }}</p>
+      <div class="actions">
+        <a href="/product/{{product.product_id}}/edit"><i class="fas fa-edit"></i>Edit</a>
+        <a href="/product/{{product.product_id}}/delete"><i class="fas fa-trash-alt"></i>Delete</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

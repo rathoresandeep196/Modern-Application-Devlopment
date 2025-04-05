@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a:hover {
+            color: #f1c40f;
+        }
+
+        .navbar-left a i,
+        .navbar-right a i {
+            margin-right: 5px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logout-link {
+            background-color: #e74c3c;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .logout-link:hover {
+            background-color: #c0392b;
+        }
+
+        .search-bar {
+            margin: 20px auto;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar form {
+            display: flex;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-bar select,
+        .search-bar input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #1abc9c;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .category_list {
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .category {
+            background-color: #ecf0f1;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .category h3 {
+            font-size: 20px;
+            color: #34495e;
+        }
+
+        .product_list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(25% - 20px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .product_info h4 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .product_info p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+        }
+
+        .add-to-cart input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .add-to-cart input[type="submit"] {
+            background-color: #27ae60;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-to-cart input[type="submit"]:hover {
+            background-color: #219150;
+        }
+
+        .out-of-stock {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            {% if not user.is_admin %}
+            <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+            {% endif %}
+        </div>
+        <div class="navbar-right">
+            <a href="/logout" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <form action="/search" method="post">
+            <select name="search_for" id="search_for">
+                <option value="name">Name</option>
+                <option value="category">Category</option>
+                <option value="price">Price</option>
+            </select>
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <h1>Welcome ! {{user.f_name}} {{user.l_name}}</h1>
+
+    <div class="category_list">
+        {% for category in categories %}
+        <div class="category">
+            <h3>{{category.category_name}}</h3>
+        </div>
+        <div class="product_list">
+            {% for product in category.products %}
+            <div class="product">
+                <div class="product_info">
+                    <h4>{{product.product_name}}</h4>
+                    <p>Price: ₹{{product.price}}</p>
+                    <p>Available: {{product.quantity}}</p>
+                </div>
+                <div class="add-to-cart">
+                    {% if product.quantity > 0 %}
+                    <form action="/add_to_cart/{{product.product_id}}" method="post">
+                        <label for="quantity">Qty</label>
+                        <input type="number" name="quantity" id="quantity" value="1" max="{{product.quantity}}" required>
+                        <input type="submit" value="Add to cart">
+                    </form>
+                    {% else %}
+                    <p class="out-of-stock">Out of Stock</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 18px;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .navbar a:hover {
+            color: #ffe082;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0 15px;
+            color: #007BFF;
+        }
+
+        .cart-item {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .cart-item:hover {
+            transform: scale(1.01);
+        }
+
+        .cart-item p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .cart-action-links {
+            margin-top: 12px;
+        }
+
+        .cart-action-links a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: 500;
+            margin-right: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .cart-action-links a:hover {
+            color: #0056b3;
+        }
+
+        .action-icon {
+            margin-right: 6px;
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.2s ease;
+        }
+
+        .continue-shopping:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+        </div>
+        <div>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Page Heading -->
+    <h1>Your Shopping Cart</h1>
+
+    <!-- Cart Items -->
+    {% for item in product %}
+    <div class="cart-item">
+        <p><strong>Product ID:</strong> {{ item.id_of_product }}</p>
+        <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+        <div class="cart-action-links">
+            <a href="/buy_product/{{ item.cart_id }}">
+                <i class="fas fa-shopping-basket action-icon"></i> Buy This Product
+            </a>
+            <a href="/remove_from_cart/{{ item.cart_id }}">
+                <i class="fas fa-trash-alt action-icon"></i> Remove From Cart
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Continue Shopping -->
+    <a class="continue-shopping" href="/">
+        <i class="fas fa-arrow-left action-icon"></i> Continue Shopping
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Logged In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>You are not logged in. Please log in to continue.</h2>
+    <a href="/login">Login</a>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Already Added</title>
+    <style>
+        /* Reset some default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Vertically center items */
+            padding: 10px 20px; /* Add padding for spacing */
+            color: white;
+        }
+
+        .navbar a {
+            font-size: 16px;
+            text-decoration: none;
+            margin-right: 20px; /* Add some space between links */
+            color: white;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .logout-right {
+            text-align: right;
+        }
+
+        .logout-right a {
+            color: rgb(239, 224, 224);
+            background-color: rgb(193, 54, 54);
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px; /* Adjust padding for button-like appearance */
+            border-radius: 5px; /* Add rounded corners to the button */
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-right a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px; /* Add some space between the navigation bar and welcome message */
+            font-size: 24px; /* Increase font size for emphasis */
+            color: red; /* Change text color for better readability */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+
+    <h1>you are not login, login first </h1>
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Not Logged In</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .navbar h2 {
+      color: white;
+      font-size: 24px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #007bff;
+      transition: 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .navbar a:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .message-box {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      padding: 30px 40px;
+      border-radius: 15px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .message-box h1 {
+      font-size: 28px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px auto;
+      max-width: 1300px;
+      padding: 0 20px;
+    }
+
+    .about, .contact-form {
+      flex: 1 1 400px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .about h2, .contact-form h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .about p {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form input, .contact-form textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .contact-form button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+    }
+
+    .footer a {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 16px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: #ffcc00;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .message-box h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h2>🧺🍎🍇 E Basket</h2>
+    <div class="navbar-links">
+      <a href="/login"><span>🔐</span> Login</a>
+      <a href="/register"><span>📝</span> Register</a>
+    </div>
+  </div>
+
+  <div class="message">
+    <div class="message-box">
+      <h1>You are not logged in. <br> Please log in to continue.</h1>
+    </div>
+  </div>
+
+  <div class="sections">
+    <div class="about">
+      <h2>About Me</h2>
+      <p>Hello! I’m <strong>Sandeep Kumar</strong>, the co-founder of this Smart Basket platform. I’m currently pursuing my BS in Data Science from IIT Madras and have a strong background in Physics as well.</p>
+      <p>This platform was created with the vision to make grocery shopping more efficient and affordable for everyone. Feel free to explore, and don’t forget to log in for a personalized experience!</p>
+    </div>
+
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form action="/submitcontact" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="mailto:youremail@example.com">Mail</a>
+    <a href="https://www.youtube.com/channel/yourchannel" target="_blank">YouTube</a>
+    <a href="https://www.facebook.com/yourpage" target="_blank">Facebook</a>
+    <!-- <a href="/contact">Contact Us</a> -->
+  </div>
+
+</body>
+</html>
